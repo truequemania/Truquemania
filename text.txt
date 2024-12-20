@@ -1,0 +1,17 @@
+
+
+foto
+nombre
+email
+biografia
+
+intercambios completados, puntuacion, verificacion
+
+articulos publicados
+
+favoritos
+
+Actulizar informacion
+Cambiar contraseña
+Verificate
+
