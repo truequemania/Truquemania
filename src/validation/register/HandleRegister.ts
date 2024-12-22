@@ -1,6 +1,6 @@
 import { useState, FormEvent, Dispatch, SetStateAction } from 'react';
-import { handleSubmitUsers } from '../../validation/Auth';
 import { useNavigate } from 'react-router-dom';
+import { handleSubmitUsers } from './Register';
 
 function useRegisterHandler(
     name: string,

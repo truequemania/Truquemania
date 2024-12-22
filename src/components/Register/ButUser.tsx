@@ -3,7 +3,6 @@ interface UserString{
     isLoading:boolean;
 }
 function ButUser({isLoading}:UserString) {
-    console.log(isLoading);
     return (
         <div>
             <div>

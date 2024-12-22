@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { handleSubmitEmail } from "../validation/Pass";
+import { handleSubmitEmail } from "../../validation/Pass";
 
 function EmailVerification() {
 

@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import axios from "axios";
-import { api } from "./Url";
-import { mostrarMensaje } from "../components/toast";
+import { api } from "../Url";
+import { mostrarMensaje } from "../../components/toast";
 
 export interface TokensData {
     token: any;
@@ -48,6 +48,7 @@ export const handleSubmitUserSesion = async (
     setPassword: React.Dispatch<React.SetStateAction<string>>
 ): Promise<SesionData | null> => {
     event.preventDefault();
+
     const MensajeErrUsuario = document.getElementById("MensajeErrUsuario");
     const MensajeActUsuario = document.getElementById("MensajeActUsuario");
 

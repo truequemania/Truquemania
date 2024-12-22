@@ -1,10 +1,11 @@
-import Message from '../components/Register/Message';
-import NameUser from '../components/Register/NameUser';
-import EmailUser from '../components/Register/EmailUser';
-import PassUser from '../components/Register/PassUser';
-import ButUser from '../components/Register/ButUser';
-import useRegisterForm from '../components/Register/userRegiter';
-import useRegisterHandler from '../components/Validation/handle';
+
+import NameUser from '../../components/Register/NameUser';
+import EmailUser from '../../components/Register/EmailUser';
+import PassUser from '../../components/Register/PassUser';
+import ButUser from '../../components/Register/ButUser';
+import Message from '../../components/Register/Message';
+import useRegisterForm from '../../components/Register/userRegiter';
+import useRegisterHandler from '../../validation/register/HandleRegister';
 
 function Register() {
 
@@ -23,6 +24,7 @@ function Register() {
         setPassword,
         setisVerified
     );
+
     return (
         <div className="font-quicksand flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-900 via-black to-gray-900">
             <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
@@ -35,7 +37,6 @@ function Register() {
                         name={name}
                         setName={setName}
                     />
-
                     <EmailUser
                         email={email}
                         setEmail={setEmail}
