@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import { mostrarMensaje } from "../components/toast";
 import axios, { AxiosResponse } from "axios";
-import { api } from "./Url";
+import { api } from "../general/urls";
 
 const token = localStorage.getItem("ACCESS_TOKEN");
 

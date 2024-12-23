@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function authRedirect(redirectTo: string) {
+function authRedirectToken(redirectTo: string) {
     const navigate = useNavigate();
     const token = localStorage.getItem("ACCESS_TOKEN");
 
@@ -16,4 +16,4 @@ function authRedirect(redirectTo: string) {
     }
 }
 
-export default authRedirect;
+export default authRedirectToken;

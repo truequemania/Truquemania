@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function useRegisterForm() {
+function User() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,4 +17,4 @@ function useRegisterForm() {
     };
 }
 
-export default useRegisterForm;
+export default User;

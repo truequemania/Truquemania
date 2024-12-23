@@ -1,39 +1,16 @@
-import { FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { handleSubmitEmail } from "../../validation/Pass";
+import useEmailVerificacion from "../../validation/verifiacionEmail/useEmailVerification";
+import authRedirect from "../../general/autRedirectToken";
+import handleEmailVerificacion from "../../validation/verifiacionEmail/handleEmailVerification";
 
 function EmailVerification() {
+    const { email, setEmail} = useEmailVerificacion();
 
-    const [email, setEmail] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    authRedirect("/login");
 
-    const navigate = useNavigate();
-    const token = localStorage.getItem("ACCESS_TOKEN");
-
-    useEffect(() => {
-        if (token) {
-            navigate("/login");
-        }
-    }, [token, navigate]);
-
-    if (token) {
-        return null;
-    }
-
-    const handleSubmit = async (event: FormEvent) => {
-        event.preventDefault();
-        setIsLoading(true);
-
-        const emailData = await handleSubmitEmail(event, email, setEmail);
-
-        if (emailData) {
-            setTimeout(() => {
-                navigate("/verificacion");
-            }, 3000);
-        }
-
-        setIsLoading(false);
-    };
+    const { handleSubmit, isLoading } = handleEmailVerificacion(
+        email,
+        setEmail
+    );
 
     return (
         <div className="font-quicksand flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-900 via-black to-gray-900">

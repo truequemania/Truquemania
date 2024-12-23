@@ -1,24 +1,24 @@
-import useLoginForm from '../../components/Login/userLogin';
-import ButUser from '../../components/Register/ButUser';
-import EmailUser from '../../components/Register/EmailUser';
-import Message from '../../components/Register/Message';
-import PassUser from '../../components/Register/PassUser';
-import authRedirect from '../../validation/autRedirect';
-import handleSubmitLogin from '../../validation/login/HandleLogin';
-import verificarTokens from '../../validation/login/VerificacionTokenLogin';
+import authRedirectToken from "../general/autRedirectToken";
+import Message from "../general/message";
+import ButtonUser from "./components/buttonUser";
+import EmailUser from "./components/emailUser";
+import PasswordUser from "./components/passwordUser";
+import Handle from "./validation/handle";
+import User from "./validation/user";
+import VerificationUrls from "./validation/verificationUrls";
+
 
 function Login() {
 
-    const { email, setEmail, password, setPassword, showPassword, togglePasswordVisibility } = useLoginForm();
+    authRedirectToken("/user");
 
-    authRedirect("/");
+    const { email, setEmail, password, setPassword, showPassword, togglePasswordVisibility } = User();
 
     const urlParams = new URLSearchParams(window.location.search);
     const tokens = urlParams.get("token");
+    VerificationUrls(tokens);
 
-    verificarTokens(tokens);
-
-    const { handleSubmitLoginData, isLoading } = handleSubmitLogin(
+    const { handleSubmit, isLoading } = Handle(
         email,
         password,
         setEmail,
@@ -32,13 +32,13 @@ function Login() {
                     Inicia Sesión
                 </h2>
                 <Message />
-                <form onSubmit={handleSubmitLoginData} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                     <EmailUser
                         email={email}
                         setEmail={setEmail}
                     />
 
-                    <PassUser
+                    <PasswordUser
                         password={password}
                         setPassword={setPassword}
                         showPassword={showPassword}
@@ -53,7 +53,7 @@ function Login() {
                         </div>
                     </div>
 
-                    <ButUser
+                    <ButtonUser
                         isLoading={isLoading}
                     />
                 </form>

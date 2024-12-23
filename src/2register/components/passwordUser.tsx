@@ -6,7 +6,7 @@ interface PassUser{
     togglePasswordVisibility: () => void;
 }
 
-function PassUser({password, setPassword, showPassword, togglePasswordVisibility}:PassUser) {
+function PasswordUser({password, setPassword, showPassword, togglePasswordVisibility}:PassUser) {
     return (
         <div>
             <div>
@@ -36,4 +36,4 @@ function PassUser({password, setPassword, showPassword, togglePasswordVisibility
     );
 }
 
-export default PassUser;
+export default PasswordUser;

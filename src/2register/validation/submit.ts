@@ -1,9 +1,9 @@
 import { FormEvent } from "react";
 import axios from "axios";
 import { mostrarMensaje } from "../../components/toast";
-import { api } from "../Url";
+import { api } from "../../general/urls";
 
-export const handleSubmitUsers = async (
+export const Submit = async (
     event: FormEvent,
     name: string,
     email: string,
@@ -15,8 +15,9 @@ export const handleSubmitUsers = async (
     setisVerified: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
     event.preventDefault();
-    const MensajeErrUsuario = document.getElementById("MensajeErrUsuario");
-    const MensajeActUsuario = document.getElementById("MensajeActUsuario");
+    
+    const MensajeErrUsuario = document.getElementById("err");
+    const MensajeActUsuario = document.getElementById("success");
 
     if (name === "") {
         mostrarMensaje("Ingrese su nombre", MensajeErrUsuario);

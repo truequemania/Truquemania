@@ -2,7 +2,7 @@
 interface UserString{
     isLoading:boolean;
 }
-function ButUser({isLoading}:UserString) {
+function ButtonUser({isLoading}:UserString) {
     return (
         <div>
             <div>
@@ -17,4 +17,4 @@ function ButUser({isLoading}:UserString) {
     );
 }
 
-export default ButUser;
+export default ButtonUser;

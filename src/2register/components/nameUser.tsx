@@ -8,12 +8,12 @@ function NameUser({ name, setName }:NameString) {
     return (
         <div>
             <div>
-                <label className="block text-gray-400 text-sm font-semibold mb-2" htmlFor="username">
+                <label className="block text-gray-400 text-sm font-semibold mb-2" htmlFor="name">
                     Nombre de usuario
                 </label>
                 <input
-                    id="username"
-                    name="username"
+                    id="name"
+                    name="name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}

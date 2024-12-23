@@ -1,20 +1,22 @@
-
-import NameUser from '../../components/Register/NameUser';
-import EmailUser from '../../components/Register/EmailUser';
-import PassUser from '../../components/Register/PassUser';
-import ButUser from '../../components/Register/ButUser';
-import Message from '../../components/Register/Message';
-import useRegisterForm from '../../components/Register/userRegiter';
-import useRegisterHandler from '../../validation/register/HandleRegister';
+import authRedirect from "../general/autRedirectToken";
+import ButtonUser from "./components/buttonUser";
+import EmailUser from "./components/emailUser";
+import Message from "../general/message";
+import NameUser from "./components/nameUser";
+import PasswordUser from "./components/passwordUser";
+import Handle from "./validation/hanle";
+import User from "./validation/user";
 
 function Register() {
 
     const { name, setName, email, setEmail, password, setPassword,
         isVerified, setisVerified, showPassword,
         togglePasswordVisibility,
-    } = useRegisterForm();
+    } = User();
 
-    const { handleSubmitRegister, isLoading } = useRegisterHandler(
+    authRedirect("/user");
+
+    const { handleSubmit, isLoading } = Handle(
         name,
         email,
         password,
@@ -32,7 +34,7 @@ function Register() {
                     Crea tu Cuenta
                 </h2>
                 <Message />
-                <form onSubmit={handleSubmitRegister} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                     <NameUser
                         name={name}
                         setName={setName}
@@ -41,13 +43,13 @@ function Register() {
                         email={email}
                         setEmail={setEmail}
                     />
-                    <PassUser
+                    <PasswordUser
                         password={password}
                         setPassword={setPassword}
                         showPassword={showPassword}
                         togglePasswordVisibility={togglePasswordVisibility}
                     />
-                    <ButUser
+                    <ButtonUser
                         isLoading={isLoading}
                     />
                 </form>

@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { handleSubmitVerifi } from "./AuthLogin";
+import { submitUrls } from "./submitUrls";
 
 export interface UserData {
     name: string;
     email: string;
 }
 
-async function verificarTokens(tokens: any) {
+async function VerificationUrls(tokens: any) {
 
     const navigate = useNavigate();
 
     if (tokens) {
-        const tokenData = await handleSubmitVerifi(tokens);
+        const tokenData = await submitUrls(tokens);
 
         if (tokenData) {
             const { token, name, email } = tokenData;
@@ -26,10 +26,10 @@ async function verificarTokens(tokens: any) {
             localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
 
             setTimeout(() => {
-                navigate("/userhome");
+                navigate("/user");
             }, 1000);
         }
     }
 }
 
-export default verificarTokens;
+export default VerificationUrls;

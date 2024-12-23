@@ -1,9 +1,10 @@
 
-import { handleSubmitUserSesion } from "./AuthLogin";
+
 import { useNavigate } from "react-router-dom";
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { Submit } from "./submit";
 
-function handleSubmitLogin(
+function Handle(
     email: string,
     password: string,
     setEmail: Dispatch<SetStateAction<string>>,
@@ -12,22 +13,22 @@ function handleSubmitLogin(
      const [isLoading, setIsLoading] = useState(false);
         const navigate = useNavigate();
     
-        const handleSubmitLoginData = async (event: FormEvent) => {
+        const handleSubmit = async (event: FormEvent) => {
             event.preventDefault();
             setIsLoading(true);
     
-            const registrationSuccessful = await handleSubmitUserSesion(event, email, password, setEmail, setPassword);
+            const shipment = await Submit(event, email, password, setEmail, setPassword);
     
-            if (registrationSuccessful) {
+            if (shipment) {
                 setTimeout(() => {
                     navigate("/verificacion");
-                }, 3000);
+                }, 1000);
             }
     
             setIsLoading(false);
         };
     
-        return { handleSubmitLoginData, isLoading };
+        return { handleSubmit, isLoading };
 }
 
-export default handleSubmitLogin
+export default Handle;

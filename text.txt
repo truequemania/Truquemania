@@ -1,4 +1,4 @@
-
+arquitectura: starting, register, login, email, password, verification, user.
 
 foto
 nombre

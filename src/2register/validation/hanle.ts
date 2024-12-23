@@ -1,8 +1,8 @@
 import { useState, FormEvent, Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleSubmitUsers } from './Register';
+import { Submit } from './submit';
 
-function useRegisterHandler(
+function Handle(
     name: string,
     email: string,
     password: string,
@@ -15,22 +15,22 @@ function useRegisterHandler(
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmitRegister = async (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         setIsLoading(true);
 
-        const registrationSuccessful = await handleSubmitUsers(event, name, email, password, isVerified, setName, setEmail, setPassword, setisVerified);
+        const shipment = await Submit(event, name, email, password, isVerified, setName, setEmail, setPassword, setisVerified);
 
-        if (registrationSuccessful) {
+        if (shipment) {
             setTimeout(() => {
                 navigate("/verificacion");
-            }, 3000);
+            }, 1000);
         }
 
         setIsLoading(false);
     };
 
-    return { handleSubmitRegister, isLoading };
+    return { handleSubmit, isLoading };
 }
 
-export default useRegisterHandler;
+export default Handle;
