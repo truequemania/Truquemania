@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import axios from "axios";
-import { api } from "../../general/ts/urls";
-import { mostrarMensaje } from "../../general/tsx/toast";
+import { api } from "../../components/ts/urls";
+import { mostrarMensaje } from "../../components/tsx/toast";
 
 export interface SesionData {
     token: string;
@@ -18,8 +18,8 @@ export const Submit = async (
 ): Promise<SesionData | null> => {
     event.preventDefault();
 
-    const MensajeErrUsuario = document.getElementById("MensajeErrUsuario");
-    const MensajeActUsuario = document.getElementById("MensajeActUsuario");
+    const MensajeErrUsuario = document.getElementById("err");
+    const MensajeActUsuario = document.getElementById("success");
 
     if (email === "") {
         mostrarMensaje("Ingrese su correo", MensajeErrUsuario);

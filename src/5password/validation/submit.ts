@@ -1,13 +1,12 @@
 import { FormEvent } from "react";
-import { mostrarMensaje } from "../../general/tsx/toast";
+import { mostrarMensaje } from "../../components/tsx/toast";
 import axios from "axios";
-import { api } from "../../general/ts/urls";
+import { api } from "../../components/ts/urls";
 
 export interface upEmailData {
     tokens: any;
     name: string;
     email: string;
-    telefone: string;
 }
 
 export const Submit = async (
@@ -27,7 +26,7 @@ export const Submit = async (
     }
 
     if (verPassword === "") {
-        mostrarMensaje("Ingrese la verificación", MensajeErr);
+        mostrarMensaje("Ingrese la verificación de su nueva contraseña", MensajeErr);
         return null;
     }
 
@@ -55,9 +54,8 @@ export const Submit = async (
         const tokens = responseSesion.data.tokens;
         const name = responseSesion.data.name;
         const emaile = responseSesion.data.email;
-        const telefone = responseSesion.data.telefone;
 
-        return { tokens, name, email: emaile, telefone };
+        return { tokens, name, email: emaile };
     } catch (error: any) {
         const message = error.response?.data.message;
         mostrarMensaje(message, MensajeErr);

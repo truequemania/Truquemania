@@ -19,7 +19,7 @@ function Handle(
     
             if (shipment) {
                 setTimeout(() => {
-                    navigate("/verificacion");
+                    navigate("/verification");
                 }, 1000);
             }
     

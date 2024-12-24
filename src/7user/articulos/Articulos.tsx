@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { handleClickEl, handleSubmitArticulos, obtenerarticulos } from "./validation/Articulos";
-import { Modal } from "../../general/tsx/toast";
+import { Modal } from "../../components/tsx/toast";
 
 function Articulos() {
 
@@ -147,9 +147,11 @@ function Articulos() {
                                 </td>
                             </tr>
                         ))}
+
                     </tbody>
                 </table>
             </div>
+
             {isOpen && (
                 <div
                     id="authentication-modal"
@@ -292,6 +294,7 @@ function Articulos() {
                     </div>
                 </div>
             )}
+            
         </div>
     );
 }

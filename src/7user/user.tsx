@@ -2,7 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavBar from "./components/navBar";
 import Sidebar from "./components/aside";
-import { Modal } from "../general/tsx/toast";
+import { Modal } from "../components/tsx/toast";
 
 function User() {
     const [isAsideOpen, setIsAsideOpen] = useState(false);

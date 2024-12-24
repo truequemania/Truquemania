@@ -1,5 +1,5 @@
 
-import Message from "../general/tsx/message";
+import Message from "../components/tsx/message";
 import ButtonUser from "./components/buttonUser";
 import PasswordUser from "./components/passwordUser";
 import VerPasswordUser from "./components/verPasswordUser";

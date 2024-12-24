@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import axios from "axios";
-import { mostrarMensaje } from "../../general/tsx/toast";
-import { api } from "../../general/ts/urls";
+import { mostrarMensaje } from "../../components/tsx/toast";
+import { api } from "../../components/ts/urls";
 
 export const Submit = async (
     event: FormEvent,

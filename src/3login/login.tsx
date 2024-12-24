@@ -1,5 +1,5 @@
-import authRedirectToken from "../general/ts/autRedirectToken";
-import Message from "../general/tsx/message";
+import authRedirectToken from "../components/ts/autRedirectToken";
+import Message from "../components/tsx/message";
 import ButtonUser from "./components/buttonUser";
 import EmailUser from "./components/emailUser";
 import PasswordUser from "./components/passwordUser";
@@ -47,7 +47,7 @@ function Login() {
 
                     <div className="flex justify-between items-center">
                         <div>
-                            <a href="/emailverificacion" className="text-orange-400 hover:text-yellow-400 transition">
+                            <a href="/email" className="text-orange-400 hover:text-yellow-400 transition">
                                 ¿Olvidaste tu contraseña?
                             </a>
                         </div>

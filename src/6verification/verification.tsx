@@ -1,5 +1,5 @@
 import { Link} from "react-router-dom";
-import authRedirectToken from "../general/ts/autRedirectToken";
+import authRedirectToken from "../components/ts/autRedirectToken";
 
 function Verification() {
 

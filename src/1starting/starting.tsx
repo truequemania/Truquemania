@@ -1,3 +1,4 @@
+import authRedirectToken from "../components/ts/autRedirectToken";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import Section1 from "./components/section1";
@@ -7,6 +8,7 @@ import Section4 from "./components/section4";
 
 function Starting() {
 
+    authRedirectToken("/user");
     return (
         <div className="font-quicksand bg-gradient-to-r from-gray-900 via-black to-gray-900 min-h-screen text-white">
             <Header />

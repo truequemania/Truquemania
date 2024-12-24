@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
-import { mostrarMensaje } from "../../general/tsx/toast";
+import { mostrarMensaje } from "../../components/tsx/toast";
 import axios from "axios";
-import { api } from "../../general/ts/urls";
+import { api } from "../../components/ts/urls";
 
 export interface emailData {
     email: string

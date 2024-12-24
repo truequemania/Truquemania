@@ -1,6 +1,6 @@
 import axios from "axios";
-import { api } from "../../general/ts/urls";
-import { mostrarMensaje } from "../../general/tsx/toast";
+import { api } from "../../components/ts/urls";
+import { mostrarMensaje } from "../../components/tsx/toast";
 
 export interface TokensData {
     token: any;

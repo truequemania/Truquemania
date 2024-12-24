@@ -12,6 +12,7 @@ import Trueques from "../7user/trueques/Trueques";
 import Favorito from "../7user/favorito/Favorito";
 import Perfil from "../7user/perfil/Perfil";
 import Soporte from "../7user/soporte/Soporte";
+import NotFound from "../components/tsx/notFound";
 
 const router = createBrowserRouter([
   { path: "/", element: <Starting /> },
@@ -33,7 +34,9 @@ const router = createBrowserRouter([
     ]
   },
 
+  { path: "*", element: <NotFound /> }
 ]);
+
 
 export default router;
 

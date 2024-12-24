@@ -26,7 +26,7 @@ async function VerificationUrls(tokens: any) {
             localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
 
             setTimeout(() => {
-                navigate("/user");
+                navigate("/explorar");
             }, 1000);
         }
     }
