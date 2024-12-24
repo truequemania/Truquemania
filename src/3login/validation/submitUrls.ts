@@ -13,6 +13,7 @@ export const submitUrls= async (tokens: any): Promise<TokensData | null> => {
     const MensajeActUsuario = document.getElementById("MensajeActUsuario");
 
     const isVerified: boolean = true;
+    console.log(tokens, "En el submituls");
 
     try {
         const responseSesion = await axios.patch(`${api}/auth/tokens-verifi`, { isVerified }, {

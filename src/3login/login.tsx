@@ -20,6 +20,7 @@ function Login() {
 
     useEffect(() => {
         const verifyTokens = async () => {
+            console.log(tokens, "en el login");
             if (tokens) {
                 await VerificationUrls(tokens);
             }

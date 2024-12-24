@@ -11,6 +11,7 @@ async function VerificationUrls(tokens: any): Promise<boolean> {
 
     if (tokens) {
         const tokenData = await submitUrls(tokens);
+        console.log(tokens, "En la verificacion url");
 
         if (tokenData) {
             const { token, name, email } = tokenData;
