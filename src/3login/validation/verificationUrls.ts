@@ -6,8 +6,7 @@ export interface UserData {
     email: string;
 }
 
-async function VerificationUrls(tokens: any) {
-
+async function VerificationUrls(tokens: any): Promise<boolean> {
     const navigate = useNavigate();
 
     if (tokens) {
@@ -28,8 +27,12 @@ async function VerificationUrls(tokens: any) {
             setTimeout(() => {
                 navigate("/explorar");
             }, 1000);
+
+            return true; 
         }
     }
+
+    return false; 
 }
 
 export default VerificationUrls;

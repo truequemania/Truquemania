@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import authRedirectToken from "../components/ts/autRedirectToken";
 import Message from "../components/tsx/message";
 import ButtonUser from "./components/buttonUser";
@@ -16,7 +17,16 @@ function Login() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const tokens = urlParams.get("token");
-    VerificationUrls(tokens);
+
+    useEffect(() => {
+        const verifyTokens = async () => {
+            if (tokens) {
+                await VerificationUrls(tokens);
+            }
+        };
+
+        verifyTokens();
+    }, [tokens]);
 
     const { handleSubmit, isLoading } = Handle(
         email,
