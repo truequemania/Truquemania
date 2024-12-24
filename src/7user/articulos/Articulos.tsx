@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
-import { handleClickEl, handleSubmitArticulos, obtenerarticulos } from "../validation/Articulos";
-import { Modal } from "../components/toast";
+import { handleClickEl, handleSubmitArticulos, obtenerarticulos } from "./validation/Articulos";
+import { Modal } from "../../general/tsx/toast";
 
 function Articulos() {
 

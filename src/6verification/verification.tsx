@@ -1,19 +1,9 @@
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
+import authRedirectToken from "../general/ts/autRedirectToken";
 
-function Emailverifi() {
-    const navigate = useNavigate();
-    const token = localStorage.getItem("ACCESS_TOKEN");
+function Verification() {
 
-    useEffect(() => {
-        if (token) {
-            navigate("/");
-        }
-    }, [token, navigate]);
-
-    if (token) {
-        return null;
-    }
+    authRedirectToken("/");
 
     return (
         <div>
@@ -27,7 +17,6 @@ function Emailverifi() {
                     </p>
                     <Link to="/login">
                         <button
-                            type="submit"
                             className="p-3 rounded-full bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold hover:opacity-90 transition transform hover:scale-105"
                         >
                             Ir a sesión
@@ -40,4 +29,6 @@ function Emailverifi() {
     );
 }
 
-export default Emailverifi;
+export default Verification;
+
+

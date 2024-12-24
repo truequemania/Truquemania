@@ -1,13 +1,17 @@
-import useEmailVerificacion from "../../validation/verifiacionEmail/useEmailVerification";
-import authRedirect from "../../general/autRedirectToken";
-import handleEmailVerificacion from "../../validation/verifiacionEmail/handleEmailVerification";
+import authRedirectToken from "../general/ts/autRedirectToken";
+import Message from "../general/tsx/message";
+import ButtonUser from "./components/buttonUser";
+import EmailUser from "./components/emailUser";
+import Handle from "./validation/handle";
+import User from "./validation/user";
 
-function EmailVerification() {
-    const { email, setEmail} = useEmailVerificacion();
+function Email() {
 
-    authRedirect("/login");
+    authRedirectToken("/user");
 
-    const { handleSubmit, isLoading } = handleEmailVerificacion(
+    const { email, setEmail } = User();
+
+    const { handleSubmit, isLoading } = Handle(
         email,
         setEmail
     );
@@ -18,39 +22,15 @@ function EmailVerification() {
                 <h2 className="text-3xl font-extrabold text-white text-center mb-6">
                     Verifica tu Correo Electrónico
                 </h2>
-
-                <p className="text-gray-400 text-center mb-6">
-                    Ingresa tu correo electrónico para recibir el enlace de verificación.
-                </p>
-                
-                <p id="MensajeErr" className="hidden text-red-500 text-sm font-medium rounded-lg text-center"></p>
-                <p id="MensajeAct" className="hidden text-green-500 text-sm font-medium rounded-lg text-center"></p>
-
+                <Message />
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                        <label className="block text-gray-400 text-sm font-semibold mb-2" htmlFor="email">
-                            Correo electrónico
-                        </label>
-                        <input
-                            id="email"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            type="email"
-                            className="w-full p-3 rounded-lg bg-gray-900 text-white focus:ring-2 focus:ring-orange-400 focus:outline-none"
-                            placeholder="tuemail@ejemplo.com"
-                        />
-                    </div>
-
-                    <div>
-                        <button
-                            type="submit"
-                            className="w-full p-3 rounded-full bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold hover:opacity-90 transition transform hover:scale-105"
-                            disabled={isLoading}
-                        >
-                            {isLoading ? "Enviando..." : "Enviar"}
-                        </button>
-                    </div>
+                    <EmailUser
+                        email={email}
+                        setEmail={setEmail}
+                    />
+                    <ButtonUser
+                        isLoading={isLoading}
+                    />
                 </form>
 
                 <p className="text-gray-400 text-sm text-center mt-6">
@@ -64,4 +44,4 @@ function EmailVerification() {
     );
 }
 
-export default EmailVerification;
+export default Email;

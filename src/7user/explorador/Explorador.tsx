@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { obtenerarticulos } from "../validation/Articulos";
+import { obtenerarticulos } from "../articulos/validation/Articulos";
+
 
 function Explorador() {
     const [articulos, setArticulos] = useState<

@@ -6,9 +6,7 @@ import { Submit } from "./submit";
 
 function Handle(
     email: string,
-    password: string,
-    setEmail: Dispatch<SetStateAction<string>>,
-    setPassword: Dispatch<SetStateAction<string>>,
+    setEmail: Dispatch<SetStateAction<string>>
 ) {
      const [isLoading, setIsLoading] = useState(false);
         const navigate = useNavigate();
@@ -17,11 +15,11 @@ function Handle(
             event.preventDefault();
             setIsLoading(true);
     
-            const shipment = await Submit(event, email, password, setEmail, setPassword);
+            const shipment = await Submit(event, email, setEmail);
     
             if (shipment) {
                 setTimeout(() => {
-                    navigate("/user");
+                    navigate("/verificacion");
                 }, 1000);
             }
     

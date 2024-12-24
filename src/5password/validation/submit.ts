@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
-import { mostrarMensaje } from "../components/toast";
+import { mostrarMensaje } from "../../general/tsx/toast";
 import axios from "axios";
-import { api } from "../general/urls";
+import { api } from "../../general/ts/urls";
 
 export interface upEmailData {
     tokens: any;
@@ -10,7 +10,7 @@ export interface upEmailData {
     telefone: string;
 }
 
-export const handleSubmitPassUpEmail = async (
+export const Submit = async (
     event: FormEvent,
     password: string,
     verPassword: string,
@@ -18,8 +18,8 @@ export const handleSubmitPassUpEmail = async (
     setPassword: React.Dispatch<React.SetStateAction<string>>
 ): Promise<upEmailData | null> => {
     event.preventDefault();
-    const MensajeErr = document.getElementById("MensajeErrEmail");
-    const MensajeAct = document.getElementById("MensajeActEmail");
+    const MensajeErr = document.getElementById("err");
+    const MensajeAct = document.getElementById("success");
 
     if (password === "") {
         mostrarMensaje("Ingrese su nueva contraseña", MensajeErr);

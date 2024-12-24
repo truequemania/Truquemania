@@ -1,15 +1,20 @@
+import { FormEvent } from "react";
+import { mostrarMensaje } from "../../general/tsx/toast";
+import axios from "axios";
+import { api } from "../../general/ts/urls";
+
 export interface emailData {
     email: string
 }
 
-export const handleSubmitEmail = async (
+export const Submit = async (
     event: FormEvent,
     email: string,
     setEmail: React.Dispatch<React.SetStateAction<string>>,
 ): Promise<emailData | null> => {
     event.preventDefault();
-    const MensajeErr = document.getElementById("MensajeErr");
-    const MensajeAct = document.getElementById("MensajeAct");
+    const MensajeErr = document.getElementById("err");
+    const MensajeAct = document.getElementById("success");
 
     if (email === "") {
         mostrarMensaje("Ingrese su correo electrónico", MensajeErr);

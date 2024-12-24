@@ -1,5 +1,5 @@
-import authRedirectToken from "../general/autRedirectToken";
-import Message from "../general/message";
+import authRedirectToken from "../general/ts/autRedirectToken";
+import Message from "../general/tsx/message";
 import ButtonUser from "./components/buttonUser";
 import EmailUser from "./components/emailUser";
 import PasswordUser from "./components/passwordUser";
