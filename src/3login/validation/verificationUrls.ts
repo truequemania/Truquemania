@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { submitUrls } from "./submitUrls";
 
 export interface UserData {
@@ -6,9 +5,7 @@ export interface UserData {
     email: string;
 }
 
-async function VerificationUrls(tokens: any): Promise<boolean> {
-    const navigate = useNavigate();
-
+async function VerificationUrls(tokens: any, navigate: (path: string) => void): Promise<boolean> {
     if (tokens) {
         const tokenData = await submitUrls(tokens);
         console.log(tokens, "En la verificacion url");
@@ -29,11 +26,11 @@ async function VerificationUrls(tokens: any): Promise<boolean> {
                 navigate("/explorar");
             }, 1000);
 
-            return true; 
+            return true;
         }
     }
 
-    return false; 
+    return false;
 }
 
 export default VerificationUrls;

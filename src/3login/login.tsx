@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+
+import { useNavigate } from "react-router-dom";
 import authRedirectToken from "../components/ts/autRedirectToken";
 import Message from "../components/tsx/message";
 import ButtonUser from "./components/buttonUser";
@@ -7,6 +8,7 @@ import PasswordUser from "./components/passwordUser";
 import Handle from "./validation/handle";
 import User from "./validation/user";
 import VerificationUrls from "./validation/verificationUrls";
+import { useEffect } from "react";
 
 
 function Login() {
@@ -15,19 +17,15 @@ function Login() {
 
     const { email, setEmail, password, setPassword, showPassword, togglePasswordVisibility } = User();
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const tokens = urlParams.get("token");
+    const navigate = useNavigate();
+    const tokens = new URLSearchParams(window.location.search).get("token");
 
     useEffect(() => {
-        const verifyTokens = async () => {
-            console.log(tokens, "en el login");
-            if (tokens) {
-                await VerificationUrls(tokens);
-            }
+        const verify = async () => {
+            await VerificationUrls(tokens, navigate);
         };
-
-        verifyTokens();
-    }, [tokens]);
+        verify();
+    }, [tokens, navigate]);
 
     const { handleSubmit, isLoading } = Handle(
         email,
