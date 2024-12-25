@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { obtenerarticulos } from "../articulos/validation/Articulos";
-
+import { handleGet } from "../articulos/validation/handleGet";
 
 function Explorador() {
     const [articulos, setArticulos] = useState<
@@ -18,7 +17,7 @@ function Explorador() {
     >([]);
 
     useEffect(() => {
-        obtenerarticulos()
+        handleGet()
             .then((data) => {
                 setArticulos(data);
                 console.log(data);

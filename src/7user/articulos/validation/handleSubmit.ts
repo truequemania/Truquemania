@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
-import { mostrarMensaje } from "../../../components/tsx/toast";
 import axios, { AxiosResponse } from "axios";
+import { mostrarMensaje } from "../../../components/tsx/toast";
 import { api } from "../../../components/ts/urls";
 
 const token = localStorage.getItem("ACCESS_TOKEN");
@@ -8,20 +8,15 @@ const token = localStorage.getItem("ACCESS_TOKEN");
 interface CampanaResponse {
     message: string;
 }
-
-export const handleSubmitArticulos = async (
+export const handleSubmit = async (
     event: FormEvent,
-    id: number,
-    nombre: string,
+    id: number, nombre: string, categoria: string,
+    estado: string, fecha: string, imagen: string,
     descripcion: string,
-    categoria: string,
-    fecha: string,
-    estado: string,
-    imagen: string
 ): Promise<AxiosResponse<CampanaResponse> | null> => {
     event.preventDefault();
-    const MensajeErr = document.getElementById("MensajeErrCat");
-    const MensajeAct = document.getElementById("MensajeCat");
+    const MensajeErr = document.getElementById("err");
+    const MensajeAct = document.getElementById("success");
 
     if (nombre === "") {
         mostrarMensaje("Ingrese el nombre", MensajeErr);
@@ -76,33 +71,3 @@ export const handleSubmitArticulos = async (
         return null;
     }
 };
-
-export async function obtenerarticulos() {
-    try {
-        const response = await axios.get(`${api}/articulos`);
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-export function handleClickEl(art: any) {
-    const id = art.id;
-    const MensajeNegToast = document.getElementById("toast-negative");
-
-    axios
-        .delete(`${api}/articulos/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
-        .then((response) => {
-            console.log(response);
-            window.location.reload();
-        })
-        .catch((error) => {
-            if (error.response) {
-                mostrarMensaje(error.response.data.error, MensajeNegToast);
-            }
-        });
-}

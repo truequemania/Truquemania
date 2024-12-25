@@ -8,7 +8,6 @@ export interface UserData {
 async function VerificationUrls(tokens: any, navigate: (path: string) => void): Promise<boolean> {
     if (tokens) {
         const tokenData = await submitUrls(tokens);
-        console.log(tokens, "En la verificacion url");
 
         if (tokenData) {
             const { token, name, email } = tokenData;

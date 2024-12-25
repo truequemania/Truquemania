@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { Submit } from "./submit";
 
+export interface UserData {
+    name: string;
+    email: string;
+}
+
 function Handle(
     email: string,
     password: string,
@@ -20,9 +25,20 @@ function Handle(
             const shipment = await Submit(event, email, password, setEmail, setPassword);
     
             if (shipment) {
+                const { token, name, email } = shipment;
+    
+                localStorage.setItem("ACCESS_TOKEN", token);
+    
+                const sessionData: UserData = {
+                    name,
+                    email,
+                };
+    
+                localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
+    
                 setTimeout(() => {
-                    navigate("/user");
-                }, 1000);
+                    navigate("/explorar");
+                }, 3000);
             }
     
             setIsLoading(false);
@@ -32,3 +48,4 @@ function Handle(
 }
 
 export default Handle;
+

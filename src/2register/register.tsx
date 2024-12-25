@@ -14,7 +14,7 @@ function Register() {
         togglePasswordVisibility,
     } = User();
 
-    authRedirect("/user");
+    authRedirect("/explorar");
 
     const { handleSubmit, isLoading } = Handle(
         name,

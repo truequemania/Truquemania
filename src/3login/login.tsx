@@ -13,7 +13,7 @@ import { useEffect } from "react";
 
 function Login() {
 
-    authRedirectToken("/user");
+    authRedirectToken("/explorar");
 
     const { email, setEmail, password, setPassword, showPassword, togglePasswordVisibility } = User();
 
