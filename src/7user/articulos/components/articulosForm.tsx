@@ -4,10 +4,8 @@ import User from "../validation/user";
 import Message from "../../../components/tsx/message";
 
 function ArticulosForm({ toggleModal }: any) {
-
-    const { id, setId, nombre, setNombre, descripcion, setDescripcion, categoria, setCategoria, fecha, setFecha, estado, setEstado, imagen, setImagen, isOpen } = User();
-
-    const { handleSubmitForm, isLoading } = handle(id, nombre, categoria, estado, fecha, imagen, descripcion);
+    const { id, setId, nombre, setNombre, descripcion, setDescripcion, categoria, setCategoria, estado, setEstado, imagen, setImagen, isOpen } = User();
+    const { handleSubmitForm, isLoading } = handle(id, nombre, categoria, estado, imagen, descripcion);
 
     useEffect(() => {
         if (toggleModal) {
@@ -18,8 +16,6 @@ function ArticulosForm({ toggleModal }: any) {
                 setNombre(articulo.nombre || "");
                 setCategoria(articulo.categoria || "");
                 setEstado(articulo.estado || "");
-                setFecha(articulo.fecha || "");
-                setImagen(articulo.imagen || "");
                 setDescripcion(articulo.descripcion || "");
             }
         }
@@ -122,27 +118,20 @@ function ArticulosForm({ toggleModal }: any) {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col sm:flex-row gap-6">
-                                <div className="flex-1">
-                                    <label className="block mb-2 text-sm font-medium text-white">Fecha</label>
-                                    <input
-                                        type="date"
-                                        className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder-gray-400"
-                                        value={fecha}
-                                        onChange={(e) => setFecha(e.target.value)}
-                                    />
+                            {/* Mostrar el input de la imagen solo si no existe el id (es decir, estamos creando un nuevo artículo) */}
+                            {!id && (
+                                <div className="flex flex-col sm:flex-row gap-6">
+                                    <div className="flex-1">
+                                        <label className="block mb-2 text-sm font-medium text-white">Imagen</label>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            onChange={(e) => setImagen(e.target.files ? e.target.files[0] : null)}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="flex-1">
-                                    <label className="block mb-2 text-sm font-medium text-white">Imagen</label>
-                                    <input
-                                        type="text"
-                                        className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                                        value={imagen}
-                                        onChange={(e) => setImagen(e.target.value)}
-                                        placeholder="imagen"
-                                    />
-                                </div>
-                            </div>
+                            )}
 
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-white">Descripción</label>

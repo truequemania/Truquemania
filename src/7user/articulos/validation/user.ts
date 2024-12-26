@@ -6,12 +6,12 @@ function User() {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [categoria, setCategoria] = useState("");
-    const [fecha, setFecha] = useState("");
     const [estado, setEstado] = useState("");
-    const [imagen, setImagen] = useState("");
+    const [imagen, setImagen] = useState<File | null>(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenImg, setIsOpenImg] = useState(false);
 
-    return { id, setId, nombre, setNombre, descripcion, setDescripcion, categoria, setCategoria, fecha, setFecha, estado, setEstado, imagen, setImagen, isOpen, setIsOpen};
+    return { id, setId, nombre, setNombre, descripcion, setDescripcion, categoria, setCategoria, estado, setEstado, imagen, setImagen, isOpen, setIsOpen, isOpenImg, setIsOpenImg};
 }
 
 export default User;
