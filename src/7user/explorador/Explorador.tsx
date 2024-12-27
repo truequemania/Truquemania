@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { handleGet } from "../articulos/validation/handleGet";
 import ArticulosFormImage from "../articulos/components/articulosFormImagen";
+import axios from "axios";
+import { api } from "../../components/ts/urls";
 
 function Explorador() {
 
+    const userSession = localStorage.getItem("USER_SESSION");
+    const userEmail = userSession ? JSON.parse(userSession).email : "";
 
     const [articulos, setArticulos] = useState<
         {
@@ -16,6 +20,7 @@ function Explorador() {
             imagen: string;
             email: string;
             name: string;
+            favorito: boolean;
         }[]
     >([]);
 
@@ -38,6 +43,31 @@ function Explorador() {
         const articulo = { imagen };
         localStorage.setItem("imagenSeleccionado", JSON.stringify(articulo));
         toggleModalImagen();
+    };
+
+    const handleFavorito = async (articulosId: number) => {
+        try {
+            const updatedProposals = articulos.map((articulo) => {
+                if (articulo.id === articulosId) {
+                    return { ...articulo, favorito: !articulo.favorito };
+                }
+                return articulo;
+            });
+
+            setArticulos(updatedProposals);
+
+            const favorito = updatedProposals.find((p) => p.id === articulosId)?.favorito;
+            await axios.patch(`${api}/articulos/${articulosId}`, {
+                favorito,
+                email: userEmail,
+            });
+
+            alert(`El artículo ha sido ${favorito ? "agregada" : "quitada"} de favoritos.`);
+
+        } catch (error) {
+            console.error("Error al actualizar favorito:", error);
+            alert("Hubo un problema al actualizar el favorito.");
+        }
     };
 
     return (
@@ -102,11 +132,19 @@ function Explorador() {
                                         ? `${articulo.descripcion.substring(0, 100)}...`
                                         : articulo.descripcion}
                                 </p>
+
                                 <a
                                     href="#"
-                                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleFavorito(articulo.id);
+                                    }}
+                                    className={`inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg transition duration-300 transform hover:scale-105 focus:ring-4 focus:outline-none ${articulo.favorito
+                                        ? "bg-green-600 hover:bg-green-700 focus:ring-green-600"
+                                        : "bg-orange-600 hover:bg-orange-700 focus:ring-orange-600"
+                                        }`}
                                 >
-                                    Agregar a favoritos
+                                    {articulo.favorito ? "Agregado a favorito" : "Agregar a favorito"}
                                     <svg
                                         className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                                         aria-hidden="true"
@@ -123,6 +161,7 @@ function Explorador() {
                                         />
                                     </svg>
                                 </a>
+
                             </div>
                         </div>
                     ))}

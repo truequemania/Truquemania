@@ -8,7 +8,7 @@ import Section4 from "./components/section4";
 
 function Starting() {
 
-    authRedirectToken("/user");
+    authRedirectToken("/");
     return (
         <div className="font-quicksand bg-gradient-to-r from-gray-900 via-black to-gray-900 min-h-screen text-white">
             <Header />
