@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { handleGet } from "../validation/handleGet";
+import { handleGetUsername } from "../validation/handleGet";
 import { Modal } from "../../../components/tsx/toast";
 import { handleDelete } from "../validation/handleDelete";
 
 function ArticulosTable({ toggleModalAct, toggleModalImagen }: { toggleModalAct: () => void; toggleModalImagen: () => void }) {
 
     useEffect(() => {
-        handleGet()
+        handleGetUsername()
             .then((data) => {
                 setArticulos(data);
             })

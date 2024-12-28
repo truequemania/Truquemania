@@ -30,7 +30,21 @@ function User() {
         if (!isLogged) {
             navigate("/login");
         } else {
-            navigate(path);
+            if (path === "/perfil") {
+                const userSession = localStorage.getItem("USER_SESSION");
+                let userName = "Usuario";
+                if (userSession) {
+                    try {
+                        const parsedSession = JSON.parse(userSession);
+                        userName = parsedSession.name || "Usuario";
+                    } catch (error) {
+                        console.error("Error al parsear USER_SESSION:", error);
+                    }
+                }
+                navigate(path, { state: { name: userName } });
+            } else {
+                navigate(path);
+            }
             setIsAsideOpen(false);
         }
     };

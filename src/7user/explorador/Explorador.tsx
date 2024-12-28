@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { handleGet } from "../articulos/validation/handleGet";
 import ArticulosFormImage from "../articulos/components/articulosFormImagen";
 import axios from "axios";
 import { api } from "../../components/ts/urls";
 
 function Explorador() {
-
+    const navigate = useNavigate();
     const userSession = localStorage.getItem("USER_SESSION");
     const userEmail = userSession ? JSON.parse(userSession).email : "";
 
@@ -28,7 +29,6 @@ function Explorador() {
         handleGet()
             .then((data) => {
                 setArticulos(data);
-                console.log(data);
             })
             .catch((error) => {
                 console.error("Error al obtener los artículos:", error);
@@ -37,7 +37,9 @@ function Explorador() {
 
     const [isOpenImg, setIsOpenImg] = useState(false);
 
-    const toggleModalImagen = () => { setIsOpenImg(!isOpenImg); };
+    const toggleModalImagen = () => {
+        setIsOpenImg(!isOpenImg);
+    };
 
     const handleImagen = (imagen: string) => {
         const articulo = { imagen };
@@ -62,21 +64,21 @@ function Explorador() {
                 email: userEmail,
             });
 
-            alert(`El artículo ha sido ${favorito ? "agregada" : "quitada"} de favoritos.`);
-
+            alert(`El artículo ha sido ${favorito ? "agregado" : "quitado"} de favoritos.`);
         } catch (error) {
             console.error("Error al actualizar favorito:", error);
             alert("Hubo un problema al actualizar el favorito.");
         }
     };
 
+    const handleUserClick = (name: string) => {
+        navigate("/perfil", { state: { name } });
+    };
+
     return (
         <div className="bg-gradient-to-r from-gray-900 via-black to-gray-900 relative flex flex-col justify-between h-auto p-4 rounded-lg mt-14 shadow-md">
-
             {isOpenImg && (
-                <ArticulosFormImage
-                    toggleModalImagen={toggleModalImagen}
-                />
+                <ArticulosFormImage toggleModalImagen={toggleModalImagen} />
             )}
 
             {articulos.length === 0 ? (
@@ -104,13 +106,16 @@ function Explorador() {
                                 <img
                                     className="rounded-t-lg"
                                     src={articulo.imagen || "https://via.placeholder.com/150"}
-                                    alt={articulo.nombre} onClick={() =>
-                                        handleImagen(articulo.imagen)}
+                                    alt={articulo.nombre}
+                                    onClick={() => handleImagen(articulo.imagen)}
                                 />
                             </a>
                             <div className="p-5">
                                 <div className="flex justify-center mb-3">
-                                    <span className="text-sm font-semibold text-orange-400">
+                                    <span
+                                        className="text-sm font-semibold text-orange-400 cursor-pointer"
+                                        onClick={() => handleUserClick(articulo.name)}
+                                    >
                                         {articulo.name}
                                     </span>
                                 </div>
@@ -140,8 +145,8 @@ function Explorador() {
                                         handleFavorito(articulo.id);
                                     }}
                                     className={`inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg transition duration-300 transform hover:scale-105 focus:ring-4 focus:outline-none ${articulo.favorito
-                                        ? "bg-green-600 hover:bg-green-700 focus:ring-green-600"
-                                        : "bg-orange-600 hover:bg-orange-700 focus:ring-orange-600"
+                                            ? "bg-green-600 hover:bg-green-700 focus:ring-green-600"
+                                            : "bg-orange-600 hover:bg-orange-700 focus:ring-orange-600"
                                         }`}
                                 >
                                     {articulo.favorito ? "Agregado a favorito" : "Agregar a favorito"}
@@ -161,7 +166,6 @@ function Explorador() {
                                         />
                                     </svg>
                                 </a>
-
                             </div>
                         </div>
                     ))}

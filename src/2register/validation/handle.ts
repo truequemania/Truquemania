@@ -23,7 +23,7 @@ function Handle(
 
         if (shipment) {
             setTimeout(() => {
-                navigate("/explorar");
+                navigate("/verification");
             }, 1000);
         }
 
