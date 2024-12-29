@@ -43,7 +43,7 @@ export const Submit = async (
     try {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get("token");
-        const responseSesion = await axios.patch(`${api}/auth/update-password-email`, { password, verPassword }, {
+        const responseSesion = await axios.patch(`${api}/users/password`, { password, verPassword }, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

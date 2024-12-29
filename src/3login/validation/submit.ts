@@ -37,7 +37,7 @@ export const Submit = async (
     }
 
     try {
-        const responseSesion = await axios.post(`${api}/auth/login`, { email, password });
+        const responseSesion = await axios.post(`${api}/users/login`, { email, password });
         const token = responseSesion.data.token;
         const name = responseSesion.data.name;
         const emaile = responseSesion.data.email;

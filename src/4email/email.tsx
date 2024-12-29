@@ -7,7 +7,7 @@ import User from "./validation/user";
 
 function Email() {
 
-    authRedirectToken("/user");
+    authRedirectToken("/explorar");
 
     const { email, setEmail } = User();
 

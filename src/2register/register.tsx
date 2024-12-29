@@ -1,4 +1,3 @@
-import authRedirect from "../components/ts/autRedirectToken";
 import ButtonUser from "./components/buttonUser";
 import EmailUser from "./components/emailUser";
 import Message from "../components/tsx/message";
@@ -6,6 +5,7 @@ import NameUser from "./components/nameUser";
 import PasswordUser from "./components/passwordUser";
 import Handle from "./validation/handle";
 import User from "./validation/user";
+import authRedirectToken from "../components/ts/autRedirectToken";
 
 function Register() {
 
@@ -14,8 +14,8 @@ function Register() {
         togglePasswordVisibility,
     } = User();
 
-    authRedirect("/explorar");
-
+    authRedirectToken("/explorar");
+    
     const { handleSubmit, isLoading } = Handle(
         name,
         email,

@@ -26,7 +26,7 @@ export const Submit = async (
     }
 
     try {
-        const responseEmail = await axios.post(`${api}/auth/email`, { email });
+        const responseEmail = await axios.post(`${api}/users/email`, { email });
         resetForm();
         mostrarMensaje(responseEmail.data.message, MensajeAct);
         return { email };

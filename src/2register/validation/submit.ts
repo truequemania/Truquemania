@@ -42,7 +42,8 @@ export const Submit = async (
     }
 
     try {
-        const responseRegister = await axios.post(`${api}/auth/register`, { name, email, password, isVerified });
+        const role = "client";
+        const responseRegister = await axios.post(`${api}/users/register`, { name, email, password, isVerified, role });
         const mensaje = responseRegister.data.message;
         mostrarMensaje(mensaje, MensajeActUsuario);
         resetForm();
