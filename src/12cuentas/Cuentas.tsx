@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { handleGet } from "./validation/handleGet";
 
-function Perfil() {
+function Cuentas() {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [articulos, setArticulos] = useState<
@@ -206,7 +206,7 @@ function Perfil() {
     );
 }
 
-export default Perfil;
+export default Cuentas;
 
 
 

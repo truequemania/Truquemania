@@ -1,8 +1,8 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import NavBar from "./components/navBar";
-import Sidebar from "./components/aside";
-import { Modal } from "../components/tsx/toast";
+import NavBar from "./navBar";
+import Sidebar from "./aside";
+import { Modal } from "./toast";
 
 function User() {
     const [isAsideOpen, setIsAsideOpen] = useState(false);
@@ -52,10 +52,10 @@ function User() {
     const navLinks = [
         { path: "/explorar", label: "Explorador" },
         { path: "/articulos", label: "Artículos" },
-        { path: "/trueques", label: "Trueques" },
-        { path: "/favorito", label: "Favoritos" },
-        { path: "/perfil", label: "Perfil" },
-        { path: "/soporte", label: "Soporte" },
+        { path: "/favoritos", label: "Favoritos" },
+        { path: "/chats", label: "Chats" },
+        { path: "/intercambios", label: "Intercambios" },
+        { path: "/Cuentas", label: "Cuentas" },
     ];
 
     return (

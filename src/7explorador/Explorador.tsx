@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { handleGet } from "../articulos/validation/handleGet";
-import ArticulosFormImage from "../articulos/components/articulosFormImagen";
+
 import axios from "axios";
-import { api } from "../../components/ts/urls";
+import { api } from "../components/ts/urls";
+import { handleGet } from "../8articulos/validation/handleGet";
+import ArticulosFormImage from "../8articulos/components/articulosFormImagen";
+import WhatsAppFloatingButton from "../components/tsx/whatsapp";
 
 function Explorador() {
     const navigate = useNavigate();
@@ -171,6 +173,7 @@ function Explorador() {
                     ))}
                 </div>
             )}
+            <WhatsAppFloatingButton />
         </div>
     );
 }

@@ -5,14 +5,18 @@ import Login from "../3login/login";
 import Email from "../4email/email";
 import Password from "../5password/password";
 import Verification from "../6verification/verification";
-import User from "../7user/user";
-import Explorador from "../7user/explorador/Explorador";
-import Articulos from "../7user/articulos/Articulos";
-import Trueques from "../7user/trueques/Trueques";
-import Favorito from "../7user/favorito/Favorito";
-import Perfil from "../7user/perfil/Perfil";
-import Soporte from "../7user/soporte/Soporte";
 import NotFound from "../components/tsx/notFound";
+import User from "../components/tsx/user";
+import Explorador from "../7explorador/Explorador";
+import Articulos from "../8articulos/Articulos";
+import Favorito from "../9favorito/Favorito";
+import Intercambios from "../11Intercambios/Intercambios";
+import Cuentas from "../12cuentas/Cuentas";
+import Chats from "../10chats/Chats";
+import UserAdmin from "../components/tsx/userAdmin";
+import Category from "../13category/Category";
+import CuentasUser from "../12cuentas/CuentasUser";
+import ChatsUser from "../10chats/ChatsUser";
 
 const router = createBrowserRouter([
   { path: "/", element: <Starting /> },
@@ -27,10 +31,20 @@ const router = createBrowserRouter([
     children: [
       { path: "/explorar", element: <Explorador /> },
       { path: "/articulos", element: <Articulos /> },
-      { path: "/trueques", element: <Trueques /> },
-      { path: "/favorito", element: <Favorito /> },
-      { path: "/perfil", element: <Perfil /> },
-      { path: "/soporte", element: <Soporte /> }
+      { path: "/favoritos", element: <Favorito /> },
+      { path: "/Chats", element: <Chats /> },
+      { path: "/intercambios", element: <Intercambios /> },
+      { path: "/cuentas", element: <Cuentas /> }
+    ]
+  },
+
+  {
+    path: "/",
+    element: <UserAdmin />,
+    children: [
+      { path: "/verificationUser", element: <CuentasUser /> },
+      { path: "/categorias", element: <Category /> },
+      { path: "/chats", element: <ChatsUser /> },
     ]
   },
 
