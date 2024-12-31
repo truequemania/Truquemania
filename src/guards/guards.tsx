@@ -9,7 +9,7 @@ export const AuthGuard = () => {
   useEffect(() => {
     const userSession = localStorage.getItem("USER_SESSION");
     if (!userSession) {
-      navigate("/woody-sesion");
+      navigate("/login");
       return;
     }
 
@@ -21,13 +21,13 @@ export const AuthGuard = () => {
     if (user && !isRedirected) {
       const redirectRoutes = {
         "client": "/explorar",
-        "admin": "/categorias",
+        "admin": "/categoriasUser",
       };
 
-      const { paper, verificado } = user;
-      if (paper && !verificado && redirectRoutes[paper]) {
+      const { role, verificado } = user;
+      if (role && !verificado && redirectRoutes[role]) {
         setIsRedirected(true);
-        navigate(redirectRoutes[paper]);
+        navigate(redirectRoutes[role]);
       } 
     }
   }, [user, isRedirected, navigate]);

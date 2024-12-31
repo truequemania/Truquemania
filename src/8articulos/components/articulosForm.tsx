@@ -70,7 +70,7 @@ function ArticulosForm({ toggleModal }: any) {
                                     <input
                                         type="text"
                                         className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                                        placeholder="nombre"
+                                        placeholder="Nombre"
                                         value={nombre}
                                         onChange={(e) => setNombre(e.target.value)}
                                     />

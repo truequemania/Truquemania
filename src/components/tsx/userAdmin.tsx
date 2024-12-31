@@ -50,9 +50,9 @@ function UserAdmin() {
   };
 
   const navLinks = [
+    { path: "/categoriasUser", label: "Categorías" },
     { path: "/verificationUser", label: "Verificación" },
-    { path: "/categorias", label: "Categorías" },
-    { path: "/chats", label: "Chats" },
+    { path: "/chatsUser", label: "Chats" },
   ];
 
   return (

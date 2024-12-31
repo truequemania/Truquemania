@@ -44,8 +44,8 @@ const router = createBrowserRouter([
     element: <UserAdmin />,
     children: [
       { path: "/verificationUser", element: <CuentasUser /> },
-      { path: "/categorias", element: <Category /> },
-      { path: "/chats", element: <ChatsUser /> },
+      { path: "/categoriasUser", element: <Category /> },
+      { path: "/chatsUser", element: <ChatsUser /> },
     ]
   },
 

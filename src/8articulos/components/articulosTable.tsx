@@ -119,7 +119,7 @@ function ArticulosTable({ toggleModalAct, toggleModalImagen }: { toggleModalAct:
                                         }}
                                         isVisible={isModalVisible}
                                         onClose={showModal}
-                                        message="¿Estás seguro de eliminar el artículo?"
+                                        message="¿Estás seguro de eliminar la categoría?"
                                     />
                                 </td>
                             </tr>

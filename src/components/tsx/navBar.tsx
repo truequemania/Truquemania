@@ -31,7 +31,7 @@ const NavBar = ({ toggleAside }: NavBarProps) => (
                             ></path>
                         </svg>
                     </button>
-                    <Link to="/obtener" className="flex ml-2 md:mr-24">
+                    <Link to="/" className="flex ml-2 md:mr-24">
                         <img
                             src={logoImage}
                             className="h-12 rounded-full bg-white"
