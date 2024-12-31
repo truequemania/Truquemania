@@ -12,8 +12,10 @@ export const submitUrls= async (tokens: any): Promise<TokensData | null> => {
     const MensajeErrUsuario = document.getElementById("MensajeErrUsuario");
     const MensajeActUsuario = document.getElementById("MensajeActUsuario");
 
+    const isVerified: boolean = true;
+
     try {
-        const responseSesion = await axios.patch(`${api}/users/tokens`,{
+        const responseSesion = await axios.patch(`${api}/users/tokens`, { isVerified }, {
             headers: {
                 Authorization: `Bearer ${tokens}`,
             },
