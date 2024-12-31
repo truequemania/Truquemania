@@ -1,7 +1,6 @@
 import axios from "axios";
-import { api } from "../../../components/ts/urls";
-import { mostrarMensaje } from "../../../components/tsx/toast";
-
+import { mostrarMensaje } from "../../components/tsx/toast";
+import { api } from "../../components/ts/urls";
 const token = localStorage.getItem("ACCESS_TOKEN");
 
 

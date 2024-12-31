@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { api } from "../../../components/ts/urls";
-import { mostrarMensaje } from "../../../components/tsx/toast";
-import Message from "../../../components/tsx/message";
+import { mostrarMensaje } from "../../components/tsx/toast";
+import { api } from "../../components/ts/urls";
+import Message from "../../components/tsx/message";
+
 
 function ArticulosFormImage({ toggleModalImagen }: any) {
 

@@ -17,6 +17,7 @@ import UserAdmin from "../components/tsx/userAdmin";
 import Category from "../13category/Category";
 import CuentasUser from "../12cuentas/CuentasUser";
 import ChatsUser from "../10chats/ChatsUser";
+import AuthGuard from "../guards/guards";
 
 const router = createBrowserRouter([
   { path: "/", element: <Starting /> },
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
     ]
   },
 
+  { path: "/authguard", element: <AuthGuard /> },
   { path: "*", element: <NotFound /> }
 ]);
 

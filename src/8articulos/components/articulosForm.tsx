@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import handle from "../validation/handle";
 import User from "../validation/user";
-import Message from "../../../components/tsx/message";
+import Message from "../../components/tsx/message";
 
 function ArticulosForm({ toggleModal }: any) {
     const { id, setId, nombre, setNombre, descripcion, setDescripcion, categoria, setCategoria, estado, setEstado, imagen, setImagen, isOpen } = User();

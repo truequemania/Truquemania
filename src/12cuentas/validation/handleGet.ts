@@ -1,5 +1,5 @@
 import axios from "axios";
-import { api } from "../../../components/ts/urls";
+import { api } from "../../components/ts/urls";
 
 export async function handleGet(userName: string) {
     try {

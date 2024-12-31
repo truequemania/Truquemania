@@ -37,7 +37,7 @@ function Handle(
                 localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
     
                 setTimeout(() => {
-                    navigate("/explorar");
+                    navigate("/authguard");
                 }, 3000);
             }
     

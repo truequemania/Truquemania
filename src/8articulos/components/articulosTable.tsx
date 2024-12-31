@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { handleGetUsername } from "../validation/handleGet";
-import { Modal } from "../../../components/tsx/toast";
 import { handleDelete } from "../validation/handleDelete";
+import { Modal } from "../../components/tsx/toast";
 
 function ArticulosTable({ toggleModalAct, toggleModalImagen }: { toggleModalAct: () => void; toggleModalImagen: () => void }) {
 
