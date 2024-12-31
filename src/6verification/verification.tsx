@@ -3,7 +3,7 @@ import authRedirectToken from "../components/ts/autRedirectToken";
 
 function Verification() {
 
-    authRedirectToken("/");
+    authRedirectToken("/explorar");
 
     return (
         <div>

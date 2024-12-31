@@ -1,4 +1,4 @@
-import authRedirectToken from "../components/ts/autRedirectToken";
+import authRedirectNoToken from "../components/ts/autRedirectNoToken";
 import Message from "../components/tsx/message";
 import ButtonUser from "./components/buttonUser";
 import PasswordUser from "./components/passwordUser";
@@ -23,9 +23,9 @@ function Password() {
     togglePasswordVisibility,
     toggleConfirmPasswordVisibility,
   } = User();
-  VerificationUrls();
 
-  authRedirectToken("/explorar");
+  VerificationUrls();
+  authRedirectNoToken("/login");
 
   const { handleSubmit, isLoading } = Handle(
     password,

@@ -3,8 +3,9 @@ import ArticulosTable from "./components/articulosTable";
 import ArticulosCabecera from "./components/articulosCabecera";
 import ArticulosForm from "./components/articulosForm";
 import ArticulosFormImage from "./components/articulosFormImagen";
+import authRedirectNoToken from "../components/ts/autRedirectNoToken";
 function Articulos() {
-
+    authRedirectNoToken("/login");
     const { setId, setNombre, setDescripcion, setCategoria, setEstado, setImagen, isOpen, setIsOpen, isOpenImg, setIsOpenImg } = User();
 
     const toggleModal = () => {

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { handleGet } from "./validation/handleGet";
+import authRedirectNoToken from "../components/ts/autRedirectNoToken";
 
 function Cuentas() {
+
+    authRedirectNoToken("/login");
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [articulos, setArticulos] = useState<

@@ -9,7 +9,7 @@ function VerificationUrls(){
 
     useEffect(() => {
         if (!token) {
-            navigate("/");
+            navigate("/login");
         }
     }, [token, navigate]);
 
