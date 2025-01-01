@@ -5,7 +5,7 @@ function User() {
     const [id, setId] = useState(0);
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
-    const [categoria, setCategoria] = useState("");
+    const [categoria, setCategoria] = useState<string | number>("");
     const [estado, setEstado] = useState("");
     const [imagen, setImagen] = useState<File | null>(null);
     const [isOpen, setIsOpen] = useState(false);

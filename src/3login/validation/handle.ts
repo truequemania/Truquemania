@@ -6,6 +6,7 @@ export interface UserData {
   name: string;
   email: string;
   role: string;
+  id: number;
 }
 
 function Handle(
@@ -30,7 +31,7 @@ function Handle(
     );
 
     if (shipment) {
-      const { token, name, email, role } = shipment;
+      const { token, name, email, role, id } = shipment;
 
       localStorage.setItem("ACCESS_TOKEN", token);
 
@@ -38,6 +39,7 @@ function Handle(
         name,
         email,
         role,
+        id,
       };
 
       localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));

@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { handleSubmit } from "./handleSubmit";
 
 function Handle(
-    id: number, nombre: string,  categoria: string, 
+    id: number, nombre: string,  categoria: string | number, 
     estado: string, imagen: File | null , 
     descripcion: string, 
 ) {

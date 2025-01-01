@@ -13,7 +13,7 @@ export const handleSubmit = async (
   event: FormEvent,
   id: number,
   nombre: string,
-  categoria: string,
+  categoria: string | number,
   estado: string,
   imagen: File | null,
   descripcion: string
@@ -48,7 +48,7 @@ export const handleSubmit = async (
   }
 
   const userSession = localStorage.getItem("USER_SESSION");
-  const email = userSession ? JSON.parse(userSession).email : null;
+  const user_id = userSession ? JSON.parse(userSession).id : null;
 
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -60,11 +60,11 @@ export const handleSubmit = async (
     if (id === 0) {
       const formData = new FormData();
       formData.append("nombre", nombre);
-      formData.append("categoria", categoria);
+      formData.append("categoria", categoria.toString());
       formData.append("estado", estado);
       if (imagen) formData.append("imagen", imagen);
       formData.append("descripcion", descripcion);
-      if (email) formData.append("email", email);
+      if (user_id) formData.append("user_id", user_id);
 
       response = await axios.post(`${api}/articulos`, formData, { headers });
     } else {
@@ -73,7 +73,7 @@ export const handleSubmit = async (
         categoria,
         estado,
         descripcion,
-        email,
+        user_id,
       };
 
       response = await axios.patch(`${api}/articulos/${id}`, updateData, {

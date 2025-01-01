@@ -8,6 +8,7 @@ export interface SesionData {
   name: string;
   email: string;
   role: string;
+  id:number;
 }
 
 export const Submit = async (
@@ -46,9 +47,10 @@ export const Submit = async (
     const name = responseSesion.data.name;
     const emaile = responseSesion.data.email;
     const role = responseSesion.data.role;
+    const id = responseSesion.data.id;
     resetForm();
     mostrarMensaje("Cargando ...", MensajeActUsuario);
-    return { token, name, email: emaile, role };
+    return { token, name, email: emaile, role, id };
   } catch (error: any) {
     const message = error.response?.data.message;
     mostrarMensaje(message, MensajeErrUsuario);

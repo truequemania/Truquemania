@@ -126,13 +126,17 @@ function ArticulosForm({ toggleModal }: any) {
                   <select
                     className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                     value={categoria}
-                    onChange={(e) => setCategoria(e.target.value)}
+                    onChange={(e) =>
+                      setCategoria(
+                        e.target.value ? parseInt(e.target.value, 10) : ""
+                      )
+                    }
                   >
                     <option value="" disabled>
                       Selecciona una categoría
                     </option>
                     {categorias.map((cat) => (
-                      <option key={cat.id} value={cat.nombre}>
+                      <option key={cat.id} value={cat.id}>
                         {cat.nombre}
                       </option>
                     ))}
