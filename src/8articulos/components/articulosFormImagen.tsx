@@ -52,7 +52,7 @@ function ArticulosFormImage({ toggleModalImagen }: any) {
 
     const handleUpdateImage = async () => {
         if (!newImage) {
-            mostrarMensaje("Por favor selecciona una imagen válida.", MensajeErr);
+            alert("Por favor selecciona una imagen válida");
             return;
         }
     

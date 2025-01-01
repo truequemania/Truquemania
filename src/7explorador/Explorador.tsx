@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import axios from "axios";
-import { api } from "../components/ts/urls";
 import { handleGet } from "../8articulos/validation/handleGet";
 import ArticulosFormImage from "../8articulos/components/articulosFormImagen";
 import WhatsAppFloatingButton from "../components/tsx/whatsapp";
 import roleAdmin from "../components/ts/roleAdmin";
+import { handleGetFavorito } from "../9favorito/validation/handleGet";
+import { handleFavorito } from "../9favorito/validation/Submit";
+import { handleDeleteFav } from "../9favorito/validation/handleDelete";
 
 function Explorador() {
   const navigate = useNavigate();
@@ -15,23 +15,25 @@ function Explorador() {
     roleAdmin(navigate);
   }, [navigate]);
 
-  const userSession = localStorage.getItem("USER_SESSION");
-  const userEmail = userSession ? JSON.parse(userSession).email : "";
-
   const [articulos, setArticulos] = useState<
     {
       id: number;
       nombre: string;
       descripcion: string;
-      categoria: string;
       fecha: string;
       estado: string;
       imagen: string;
       email: string;
       name: string;
-      favorito: boolean;
+      user: {
+        id: number;
+        name: string;
+      };
     }[]
   >([]);
+
+  const [favoritoIds, setFavoritoIds] = useState<number[]>([]);
+  const [isOpenImg, setIsOpenImg] = useState(false);
 
   useEffect(() => {
     handleGet()
@@ -41,9 +43,16 @@ function Explorador() {
       .catch((error) => {
         console.error("Error al obtener los artículos:", error);
       });
-  }, []);
 
-  const [isOpenImg, setIsOpenImg] = useState(false);
+    handleGetFavorito()
+      .then((data) => {
+        console.log(data);
+        setFavoritoIds(data.map((fav: any) => fav.articulo.id));
+      })
+      .catch((error) => {
+        console.error("Error al obtener los favoritos:", error);
+      });
+  }, []);
 
   const toggleModalImagen = () => {
     setIsOpenImg(!isOpenImg);
@@ -53,38 +62,6 @@ function Explorador() {
     const articulo = { imagen };
     localStorage.setItem("imagenSeleccionado", JSON.stringify(articulo));
     toggleModalImagen();
-  };
-
-  const handleFavorito = async (articulosId: number) => {
-    try {
-      const updatedProposals = articulos.map((articulo) => {
-        if (articulo.id === articulosId) {
-          return { ...articulo, favorito: !articulo.favorito };
-        }
-        return articulo;
-      });
-
-      setArticulos(updatedProposals);
-
-      const favorito = updatedProposals.find(
-        (p) => p.id === articulosId
-      )?.favorito;
-      await axios.patch(`${api}/articulos/${articulosId}`, {
-        favorito,
-        email: userEmail,
-      });
-
-      alert(
-        `El artículo ha sido ${favorito ? "agregado" : "quitado"} de favoritos.`
-      );
-    } catch (error) {
-      console.error("Error al actualizar favorito:", error);
-      alert("Hubo un problema al actualizar el favorito.");
-    }
-  };
-
-  const handleUserClick = (name: string) => {
-    navigate("/perfil", { state: { name } });
   };
 
   return (
@@ -124,11 +101,8 @@ function Explorador() {
               </a>
               <div className="p-5">
                 <div className="flex justify-center mb-3">
-                  <span
-                    className="text-sm font-semibold text-orange-400 cursor-pointer"
-                    onClick={() => handleUserClick(articulo.name)}
-                  >
-                    {articulo.name}
+                  <span className="text-sm font-semibold text-orange-400 cursor-pointer">
+                    {articulo.user.name}
                   </span>
                 </div>
                 <div className="flex items-center justify-between mb-3">
@@ -152,18 +126,35 @@ function Explorador() {
 
                 <a
                   href="#"
-                  onClick={(e) => {
+                  onClick={async (e) => {
                     e.preventDefault();
-                    handleFavorito(articulo.id);
+
+                    const isFavorito = favoritoIds.includes(articulo.id);
+
+                    try {
+                      if (isFavorito) {
+                        await handleDeleteFav(articulo.id);
+                        setFavoritoIds(
+                          favoritoIds.filter((id) => id !== articulo.id)
+                        );
+                      } else {
+                        const addedArticuloId = await handleFavorito(
+                          articulo.id
+                        );
+                        setFavoritoIds([...favoritoIds, addedArticuloId]);
+                      }
+                    } catch (error) {
+                      console.error("Error al actualizar favorito:", error);
+                    }
                   }}
                   className={`inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg transition duration-300 transform hover:scale-105 focus:ring-4 focus:outline-none ${
-                    articulo.favorito
+                    favoritoIds.includes(articulo.id)
                       ? "bg-green-600 hover:bg-green-700 focus:ring-green-600"
                       : "bg-orange-600 hover:bg-orange-700 focus:ring-orange-600"
                   }`}
                 >
-                  {articulo.favorito
-                    ? "Agregado a favorito"
+                  {favoritoIds.includes(articulo.id)
+                    ? "Quitar de favorito"
                     : "Agregar a favorito"}
                   <svg
                     className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
@@ -181,6 +172,7 @@ function Explorador() {
                     />
                   </svg>
                 </a>
+                
               </div>
             </div>
           ))}
