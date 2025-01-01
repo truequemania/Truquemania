@@ -55,11 +55,11 @@ function ArticulosFormImage({ toggleModalImagen }: any) {
             mostrarMensaje("Por favor selecciona una imagen válida.", MensajeErr);
             return;
         }
-
+    
         const formData = new FormData();
         formData.append("id", String(id));
         formData.append("imagen", newImage);
-
+    
         try {
             const response = await axios.patch(`${api}/articulos/${id}/imagen`, formData, {
                 headers: {
@@ -72,6 +72,7 @@ function ArticulosFormImage({ toggleModalImagen }: any) {
             mostrarMensaje(error.response?.data?.message || "Error al actualizar la imagen.", null);
         }
     };
+    
 
     return (
         <div

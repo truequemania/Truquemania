@@ -15,12 +15,12 @@ export async function handleGetUsername() {
         const userSession = localStorage.getItem("USER_SESSION");
 
         const parsedSession = userSession ? JSON.parse(userSession) : null;
-        const userName = parsedSession?.name;
+        const email = parsedSession?.email;
 
-        if (!userName) {
+        if (!email) {
             throw new Error("El usuario no tiene un nombre almacenado en la sesión.");
         }
-        const response = await axios.get(`${api}/articulos/${userName}`);
+        const response = await axios.get(`${api}/articulos/${email}`);
         return response.data;
     } catch (error) {
         throw error;
