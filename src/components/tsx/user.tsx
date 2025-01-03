@@ -68,7 +68,7 @@ function User() {
                 showModal={showModal}
                 isLogged={isLogged}
             />
-            <div className={`transition-all ${isAsideOpen ? "lg:ml-64" : "ml-0"}`}>
+            <div className={`transition-all mt-16 ${isAsideOpen ? "lg:ml-64" : "ml-0"}`}>
                 <Outlet />
             </div>
             <Modal
