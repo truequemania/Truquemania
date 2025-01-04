@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleGet } from "../8articulos/validation/handleGet";
 import ArticulosFormImage from "../8articulos/components/articulosFormImagen";
-import WhatsAppFloatingButton from "../components/tsx/whatsapp";
 import roleAdmin from "../components/ts/roleAdmin";
 import { handleGetFavorito } from "../9favorito/validation/handleGet";
 import { handleFavorito } from "../9favorito/validation/Submit";
@@ -178,7 +177,6 @@ function Explorador() {
           ))}
         </div>
       )}
-      <WhatsAppFloatingButton />
     </div>
   );
 }

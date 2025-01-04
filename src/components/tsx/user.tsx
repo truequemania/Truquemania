@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import NavBar from "./navBar";
 import Sidebar from "./aside";
 import { Modal } from "./toast";
+import WhatsAppFloatingButton from "./whatsapp";
 
 function User() {
     const [isAsideOpen, setIsAsideOpen] = useState(false);
@@ -71,6 +72,7 @@ function User() {
             <div className={`transition-all mt-16 ${isAsideOpen ? "lg:ml-64" : "ml-0"}`}>
                 <Outlet />
             </div>
+            <WhatsAppFloatingButton />
             <Modal
                 onConfirm={() => {
                     logOut();
